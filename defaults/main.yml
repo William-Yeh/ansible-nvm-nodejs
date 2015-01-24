@@ -1,0 +1,23 @@
+---
+
+#
+# variables needed to be defined in user's playbook
+#
+
+# use "nvm ls-remote" to see all available versions 
+#nodejs_version: "v0.10.35"
+
+
+#
+# user-configurable defaults
+#
+
+nvm_parent_path:  /opt
+
+
+#
+# derived variables; never overrided unless absolutely necessary!
+#
+
+nvm_install_path: "{{ nvm_parent_path }}/nvm"
+nvm_exe_path:     "{{ nvm_install_path }}/nvm.sh"

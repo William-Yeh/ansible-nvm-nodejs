@@ -1,0 +1,49 @@
+---
+# file: tasks/main.yml
+# Top-level installer for NVM & Node.js.
+#
+# @see https://github.com/creationix/nvm
+#
+
+- name: install dependencies via APT
+  sudo: True
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - git
+    - curl
+    - build-essential
+    - libssl-dev
+  when: ansible_pkg_mgr == "apt"
+
+- name: install dependencies via YUM
+  sudo: True
+  yum: name={{ item }} state=present
+  with_items:
+    - git
+    - gcc
+    - gcc-c++
+    - make
+    - openssl-devel
+    - libselinux-python
+  when: ansible_pkg_mgr == "yum"
+
+
+
+- name: install NVM (Node Version Manager)
+  sudo: True
+  git: repo=https://github.com/creationix/nvm.git dest={{ nvm_install_path }}
+
+- name: activate NVM for all users
+  sudo: True
+  template: src=../templates/activate-nvm.sh.j2  dest=/etc/profile.d/activate-nvm.sh  owner=root group=root mode=755
+
+
+- name: query installed Node.js versions
+  sudo: True
+  script: ../files/check-nodejs-version.sh  {{ nvm_exe_path }}
+  register: nodejs_info
+
+- name: apply nvm.sh and set default version
+  sudo: True
+  script: ../files/install-nodejs.sh  {{ nvm_exe_path }}  {{ nodejs_version }}
+  when: not (nodejs_info.stdout|from_json).ok  or  (nodejs_info.stdout|from_json).version.default != "{{ nodejs_version }}"
