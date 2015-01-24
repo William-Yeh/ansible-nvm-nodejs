@@ -5,7 +5,7 @@ williamyeh.nvm-nodejs for Ansible Galaxy
 
 ## Summary
 
-Role name in Ansible Galaxy: **[williamyeh.nvm-nodejs](https://galaxy.ansible.com/list#/roles/XXXX)**
+Role name in Ansible Galaxy: **[williamyeh.nvm-nodejs](https://galaxy.ansible.com/list#/roles/2689)**
 
 This Ansible role has the following features for [NVM](https://github.com/creationix/nvm) & [Node.js](http://nodejs.org/):
 
