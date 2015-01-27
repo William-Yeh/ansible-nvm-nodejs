@@ -77,6 +77,16 @@ Simple example:
 ```
 
 
+## Caveat
+
+If your server's locales haven't been configured correctly, you may encounter the following error:
+
+> "your locale in your local machine is set to XXX, which SSH forwards to and tries to use on the server, but your server does not have it installed."
+> Source: [Ask Ubuntu](http://askubuntu.com/questions/144235/locale-variables-have-no-effect-in-remote-shell-perl-warning-setting-locale-f)
+
+To solve this problem, you may use [williamyeh.reset-locale](https://galaxy.ansible.com/list#/roles/2716) beforehand. Its document also contains more information about this issue and possible alternatives, if you prefer a more complete locale solution.
+
+
 
 ## Dependencies
 
