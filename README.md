@@ -2,6 +2,8 @@
 williamyeh.nvm-nodejs for Ansible Galaxy
 ============
 
+**[Deprecated!!] Use [williamyeh.nodejs](https://github.com/William-Yeh/ansible-nodejs) instead.**
+
 
 ## Summary
 
